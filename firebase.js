@@ -1,7 +1,6 @@
 // main.js
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js';
-import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js';
-
+import { getFirestore, collection, addDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js';
   const firebaseConfig = {
     apiKey: "AIzaSyCCpGY1LWaj1ya3erYBnS64ZKZLPQ45SbA",
     authDomain: "golf-view-newsletter.firebaseapp.com",
