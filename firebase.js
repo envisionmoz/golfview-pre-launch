@@ -1,11 +1,11 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  serverTimestamp,
+} from "https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js";
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyCCpGY1LWaj1ya3erYBnS64ZKZLPQ45SbA",
   authDomain: "golf-view-newsletter.firebaseapp.com",
@@ -13,37 +13,37 @@ const firebaseConfig = {
   storageBucket: "golf-view-newsletter.appspot.com",
   messagingSenderId: "961270128846",
   appId: "1:961270128846:web:96c67cf950bbf25d83309f",
-  measurementId: "G-MTLHMHJCML"
+  measurementId: "G-MTLHMHJCML",
 };
 
 firebase.initializeApp(firebaseConfig);
 
-const db = firebase.firestore();
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
 // Get reference to the form
-const notificationForm = document.getElementById('notificationForm');
+const notificationForm = document.getElementById("notificationForm");
 
 // Add submit event listener to the form
-notificationForm.addEventListener('submit', function (e) {
-    e.preventDefault(); // Prevent default form submission
-    
-    // Get the email input value
-    const emailInput = document.getElementById('email');
-    const email = emailInput.value;
+notificationForm.addEventListener("submit", async function (e) {
+  e.preventDefault(); // Prevent default form submission
 
+  // Get the email input value
+  const emailInput = document.getElementById("email");
+  const email = emailInput.value;
+
+  try {
     // Store email in Firestore
-    db.collection('emails').add({
-        email: email,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp()
-    })
-    .then(function(docRef) {
-        console.log('Email successfully stored with ID: ', docRef.id);
-        // You can add any success message or redirect user to a thank you page here
-    })
-    .catch(function(error) {
-        console.error('Error storing email: ', error);
+    const docRef = await addDoc(collection(db, "email_list"), {
+      email: email,
+      timestamp: serverTimestamp(),
     });
+    console.log("Email successfully stored with ID: ", docRef.id);
+    // You can add any success message or redirect user to a thank you page here
 
     // Reset the form after submission
     notificationForm.reset();
+  } catch (error) {
+    console.error("Error storing email: ", error);
+  }
 });
