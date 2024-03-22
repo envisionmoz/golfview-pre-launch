@@ -1,15 +1,15 @@
 // main.js
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js';
 import { getFirestore, collection, addDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js';
-  const firebaseConfig = {
-    apiKey: "AIzaSyCCpGY1LWaj1ya3erYBnS64ZKZLPQ45SbA",
-    authDomain: "golf-view-newsletter.firebaseapp.com",
-    projectId: "golf-view-newsletter",
-    storageBucket: "golf-view-newsletter.appspot.com",
-    messagingSenderId: "961270128846",
-    appId: "1:961270128846:web:96c67cf950bbf25d83309f",
-    measurementId: "G-MTLHMHJCML",
-  };
+const firebaseConfig = {
+  apiKey: "AIzaSyDtZFHrMNSQIgR095VRVayng4HdWFeB1u4",
+  authDomain: "teste-gv-pre.firebaseapp.com",
+  projectId: "teste-gv-pre",
+  storageBucket: "teste-gv-pre.appspot.com",
+  messagingSenderId: "108479622880",
+  appId: "1:108479622880:web:18c5404fbe5b06e2baea85",
+  measurementId: "G-Z7VJCRKEQ3"
+};
 
   // Initialize Firebase
   let app = initializeApp(firebaseConfig);
