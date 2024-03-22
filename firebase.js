@@ -1,7 +1,11 @@
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js';
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js';
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyCCpGY1LWaj1ya3erYBnS64ZKZLPQ45SbA",
   authDomain: "golf-view-newsletter.firebaseapp.com",
@@ -9,11 +13,10 @@ const firebaseConfig = {
   storageBucket: "golf-view-newsletter.appspot.com",
   messagingSenderId: "961270128846",
   appId: "1:961270128846:web:96c67cf950bbf25d83309f",
-  measurementId: "G-MTLHMHJCML",
+  measurementId: "G-MTLHMHJCML"
 };
 
-firebase.initializeApp(firebaseConfig);
-
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
