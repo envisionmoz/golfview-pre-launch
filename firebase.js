@@ -14,7 +14,7 @@ import { getFirestore, collection, addDoc, serverTimestamp } from 'https://www.g
   // Initialize Firebase
   let app = initializeApp(firebaseConfig);
   let db = getFirestore(app);
-
+console.log("Initializing Firebase its running");
   // Get reference to the form
   let notificationForm = document.getElementById("notificationForm");
 
@@ -25,7 +25,7 @@ import { getFirestore, collection, addDoc, serverTimestamp } from 'https://www.g
     // Get the email input value
     let emailInput = document.getElementById("email");
     let email = emailInput.value;
-
+console.log(email);
     try {
       // Store email in Firestore
       let docRef = await addDoc(collection(db, "email_list"), {
