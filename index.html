@@ -4,22 +4,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./style.css" />
-    <script src="https://kit.fontawesome.com/3138ba4589.js" crossorigin="anonymous"></script>   
-    <script src="./firebase.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js"></script>
+    <script
+      src="https://kit.fontawesome.com/3138ba4589.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- <script src="./firebase.js"></script> -->
 
     <title>Golf View</title>
   </head>
-  <body >
+  <body>
     <div class="container">
       <img src="./logo.png" />
       <h1>ESTAMOS CHEGANDO EM BREVE</h1>
       <!-- <h2>Nosso website tambem esta a ser construido agora</h2> -->
       <div>
-      <p>Estamos a trabalhar muito duro para lhe dar a melhor experiencia</p>
-      <p>Seja o primeiro a saber sobre o nosso lancamento</p>
-    </div>
+        <p>Estamos a trabalhar muito duro para lhe dar a melhor experiencia</p>
+        <p>Seja o primeiro a saber sobre o nosso lancamento</p>
+      </div>
       <!-- <p id="demo"></p> -->
       <form id="notificationForm">
         <input type="email" id="email" placeholder="Insere o seu email" />
@@ -29,9 +30,9 @@
         <p>© 2024 GolfView</p>
         <p>Informacoes da empresa</p>
         <div>
-            <i class="fa-brands fa-instagram"></i>
-            <i class="fa-brands fa-facebook"></i>
-            <i class="fa-regular fa-envelope"></i>
+          <i class="fa-brands fa-instagram"></i>
+          <i class="fa-brands fa-facebook"></i>
+          <i class="fa-regular fa-envelope"></i>
         </div>
       </div>
     </div>
@@ -67,4 +68,51 @@
       }
     }, 1000);
     </script> -->
+
+  <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js"></script>
+  // TODO: Add SDKs for Firebase products that you want to use
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyCCpGY1LWaj1ya3erYBnS64ZKZLPQ45SbA",
+      authDomain: "golf-view-newsletter.firebaseapp.com",
+      projectId: "golf-view-newsletter",
+      storageBucket: "golf-view-newsletter.appspot.com",
+      messagingSenderId: "961270128846",
+      appId: "1:961270128846:web:96c67cf950bbf25d83309f",
+      measurementId: "G-MTLHMHJCML",
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // Get reference to the form
+    const notificationForm = document.getElementById("notificationForm");
+
+    // Add submit event listener to the form
+    notificationForm.addEventListener("submit", async function (e) {
+      e.preventDefault(); // Prevent default form submission
+
+      // Get the email input value
+      const emailInput = document.getElementById("email");
+      const email = emailInput.value;
+
+      try {
+        // Store email in Firestore
+        const docRef = await addDoc(collection(db, "email_list"), {
+          email: email,
+          timestamp: serverTimestamp(),
+        });
+        console.log("Email successfully stored with ID: ", docRef.id);
+        // You can add any success message or redirect user to a thank you page here
+
+        // Reset the form after submission
+        notificationForm.reset();
+      } catch (error) {
+        console.error("Error storing email: ", error);
+      }
+    });
+  </script>
 </html>
